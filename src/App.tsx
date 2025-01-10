@@ -27,19 +27,18 @@ function App() {
     setError('');
 
     try {
-      const prompt = `${inputs.input1} Provide eco-friendly product suggestions based on the following criteria:
+      const prompt = `Provide personalized recommendations for books and podcasts based on the following criteria:
 
-Product Type: ${inputs.input1}
-Price Range: ${inputs.input2}
-Primary Use: ${inputs.input3}
-Focus on recommending items that are sustainable, environmentally friendly, and adhere to green manufacturing practices. Include a brief explanation for each suggestion highlighting its eco-friendly features.
-Output the suggestions in bullet points, and for each suggestion:
+Salary Range: ${inputs.input1}
+Age: ${inputs.input2}
+Level of Financial Knowledge: ${inputs.input3}
+Output the suggestions in the following format:
 
-Mention the product name.
-Provide a brief explanation of its eco-friendly features.
-Include any certifications or sustainable attributes.
-Focus on recommending items that are sustainable, environmentally friendly, and adhere to green manufacturing practices.
-Ensure each product suggestion is listed on a new line and presented in a neat and visually appealing format.`;
+Title: [Name of the book or podcast]
+Type: [Book/Podcast]
+Why It’s Recommended: [Brief explanation of how this aligns with the input criteria]
+Key Takeaways: [What the user will learn or benefit from engaging with this resource]
+Ensure each recommendation is listed on a new line and presented in a clear, visually appealing structure.`;
       const result = await generateText(prompt);
       setGeneratedText(result);
     } catch (err) {
@@ -53,18 +52,18 @@ Ensure each product suggestion is listed on a new line and presented in a neat a
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto">
         <div className="text-center">
-        <Sparkles className="mx-auto h-12 w-12 text-green-600" />
+          <Sparkles className="mx-auto h-12 w-12 text-gray-900" />
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            ECO SUGGESTIFY
+            AI FINANCIAL ADVISOR
           </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm space-y-4">
+        <div className="rounded-md shadow-sm space-y-4">
             <div className="rounded-md shadow-sm space-y-4">
               <div>
               <label htmlFor={`input1`} className="block text-sm font-medium text-gray-700">
-                  Enter the Product you wanna buy
+                  Enter Your Salary
                 </label>
                 <input
                   type="text"
@@ -80,7 +79,7 @@ Ensure each product suggestion is listed on a new line and presented in a neat a
             <div className="rounded-md shadow-sm space-y-4">
               <div>
               <label htmlFor={`input2`} className="block text-sm font-medium text-gray-700">
-                  Enter your price 
+                  Enter your age
                 </label>
                 <input
                   type="text"
@@ -96,7 +95,7 @@ Ensure each product suggestion is listed on a new line and presented in a neat a
             <div className="rounded-md shadow-sm space-y-4">
               <div>
               <label htmlFor={`input3`} className="block text-sm font-medium text-gray-700">
-                  Enter your primary use
+                  Enter your level of financial knowledge
                 </label>
                 <input
                   type="text"
@@ -119,7 +118,7 @@ Ensure each product suggestion is listed on a new line and presented in a neat a
             {isLoading ? (
               <Loader2 className="animate-spin h-5 w-5" />
             ) : (
-              'Give Alternatives'
+              'Give Advice'
             )}
           </button>
         </form>
@@ -132,7 +131,7 @@ Ensure each product suggestion is listed on a new line and presented in a neat a
 
         {generatedText && !error && (
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-gray-900">Given Alternatives:</h3>
+            <h3 className="text-lg font-medium text-gray-900">Given Advice</h3>
             <div className="mt-2 p-4 bg-white rounded-md shadow">
               <p className="text-gray-700">{generatedText}</p>
             </div>
